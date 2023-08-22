@@ -79,10 +79,10 @@ public class AccessLog {
         this.appCode = LogConfig.appCode;
     }
 
-    public AccessLog(String userId, UserRoleEnum userRoleEnum, AreaEnum areaEnum, ActionTypeEnum actionTypeEnum, String actionId) {
+    public AccessLog(String userId, UserRoleEnum userRoleEnum, String areaCode, ActionTypeEnum actionTypeEnum, String actionId) {
         this.userId = userId;
         this.userRole = userRoleEnum.getValue();
-        this.areaCode = areaEnum.getValue();
+        this.areaCode = areaCode;
         this.actionType = actionTypeEnum.getValue();
         this.actionId = actionId;
         this.actionTime = DateUtil.now();

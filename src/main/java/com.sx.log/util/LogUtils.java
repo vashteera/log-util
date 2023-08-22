@@ -22,21 +22,23 @@ public class LogUtils {
 
     private static final String LOG_NAME = "/access-log.log";
 
-    public static void login(String userId, UserRoleEnum userRoleEnum, AreaEnum areaEnum) {
-        saveLog(new AccessLog(userId,userRoleEnum, areaEnum, ActionTypeEnum.LOGIN_TYPE, ""));
+    public static void login(String userId, UserRoleEnum userRoleEnum, String areaCode) {
+        saveLog(new AccessLog(userId,userRoleEnum, areaCode, ActionTypeEnum.LOGIN_TYPE, ""));
     }
 
-    public static void logout(String userId, UserRoleEnum userRoleEnum, AreaEnum areaEnum) {
-        saveLog(new AccessLog(userId,userRoleEnum, areaEnum, ActionTypeEnum.LOGOUT_TYPE, ""));
+    public static void logout(String userId, UserRoleEnum userRoleEnum, String areaCode) {
+        saveLog(new AccessLog(userId,userRoleEnum, areaCode, ActionTypeEnum.LOGOUT_TYPE, ""));
     }
 
-    public static void workStart(String userId, UserRoleEnum userRoleEnum, AreaEnum areaEnum, String actionId) {
-        saveLog(new AccessLog(userId,userRoleEnum, areaEnum, ActionTypeEnum.WORK_START_TYPE, actionId));
+    public static void workStart(String userId, UserRoleEnum userRoleEnum, String areaCode, String actionId) {
+        saveLog(new AccessLog(userId,userRoleEnum, areaCode, ActionTypeEnum.WORK_START_TYPE, actionId));
     }
 
-    public static void workEnd(String userId, UserRoleEnum userRoleEnum, AreaEnum areaEnum, String actionId) {
-        saveLog(new AccessLog(userId,userRoleEnum, areaEnum, ActionTypeEnum.WORK_END_TYPE, actionId));
+    public static void workEnd(String userId, UserRoleEnum userRoleEnum, String areaCode, String actionId) {
+        saveLog(new AccessLog(userId,userRoleEnum, areaCode, ActionTypeEnum.WORK_END_TYPE, actionId));
     }
+
+    
 
     public static void bizLog(String bizType, String bizValue) {
         saveLog(new AccessLog(ActionTypeEnum.BIZ_LOG_TYPE, bizType, bizValue));

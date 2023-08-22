@@ -14,13 +14,11 @@ import com.sx.log.util.LogUtils;
 public class Main {
   public static void main(String[] args) {
       // 登录
-      LogUtils.login("qqq", UserRoleEnum.MASSES_TYPE, AreaEnum.三门县);
-      // 登出
-      LogUtils.logout("qqq", UserRoleEnum.MASSES_TYPE, AreaEnum.三门县);
+      LogUtils.login("qqq", UserRoleEnum.MASSES_TYPE, "330105002");
       // 办事开始
-      LogUtils.workStart("qqq", UserRoleEnum.MASSES_TYPE, AreaEnum.三门县, "123");
+      LogUtils.workStart("qqq", UserRoleEnum.MASSES_TYPE, "330105002", "123");
       // 办事结束
-      LogUtils.workEnd("qqq", UserRoleEnum.MASSES_TYPE, AreaEnum.三门县, "123");
+      LogUtils.workEnd("qqq", UserRoleEnum.MASSES_TYPE, "330105002", "123");
       // 业务日志
       LogUtils.bizLog("typeA", "1");
   }
