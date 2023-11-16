@@ -6,7 +6,7 @@
 
     <groupId>io.github.vashteera</groupId>
     <artifactId>log-util</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>log-util</name>

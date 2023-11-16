@@ -13,10 +13,12 @@ public class LogConfig {
 
     public static String appCode;
     public static String logPath;
+    public static String logName;
 
     static  {
         Props props = new Props("log.properties");
         appCode = props.getProperty("appCode");
         logPath = props.getProperty("logPath");
+        logName = props.getProperty("logName");
     }
 }

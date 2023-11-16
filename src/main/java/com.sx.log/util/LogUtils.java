@@ -20,7 +20,9 @@ import java.io.File;
  */
 public class LogUtils {
 
-    private static final String LOG_NAME = "/access-log.log";
+    private static final String LOG_NAME = "access-log.log";
+
+    private static File logFile = null;
 
     public static void login(String userId, UserRoleEnum userRoleEnum, String areaCode) {
         saveLog(new AccessLog(userId,userRoleEnum, areaCode, ActionTypeEnum.LOGIN_TYPE, ""));
@@ -38,18 +40,31 @@ public class LogUtils {
         saveLog(new AccessLog(userId,userRoleEnum, areaCode, ActionTypeEnum.WORK_END_TYPE, actionId));
     }
 
-    
-
     public static void bizLog(String bizType, String bizValue) {
         saveLog(new AccessLog(ActionTypeEnum.BIZ_LOG_TYPE, bizType, bizValue));
     }
 
-    private static void saveLog (AccessLog accessLog) {
-        File logFile = FileUtil.file(LogConfig.logPath + LOG_NAME);
-        if(!logFile.exists()) {
-            logFile = FileUtil.touch(logFile);
+    private static File getLogFile() {
+        if(logFile == null) {
+            String logPath = LogConfig.logPath;
+            String logName = LogConfig.logName;
+            if(!logPath.endsWith("/")) {
+                logPath = logPath + "/";
+            }
+            if(logName == null || "".equals(logName.trim())) {
+                logName = LOG_NAME;
+            }
+            logFile = FileUtil.file(logPath + logName);
         }
-        FileAppender logFileAppender = new FileAppender(logFile, 16 ,true);
+        return logFile;
+    }
+
+    private static void saveLog (AccessLog accessLog) {
+        File f = getLogFile();
+        if(!f.exists()) {
+            f = FileUtil.touch(f);
+        }
+        FileAppender logFileAppender = new FileAppender(f, 16 ,true);
         logFileAppender.append(JSONUtil.toJsonStr(accessLog));
         logFileAppender.flush();
     }
